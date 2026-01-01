@@ -121,19 +121,18 @@
       border-radius: 12px;
       font-size: clamp(1.8rem, 10vw, 3rem);
       text-transform: uppercase;
-      
     }
 
     .odd {
       background-color: var(--yellow);
       animation: wiggleLeft 3s infinite;
-      text-shadow: 0px 2px rgba(255,255,255,0.65);
+      text-shadow: 0px 2px rgba(255, 255, 255, 0.65);
     }
 
     .synergy {
       background-color: var(--blue);
       animation: wiggleLeft 3s infinite;
-      text-shadow: 0px 2px rgba(255,255,255,0.65);
+      text-shadow: 0px 2px rgba(255, 255, 255, 0.65);
     }
 
     .slogan-bubble {
@@ -144,7 +143,6 @@
       display: inline-block;
       position: relative;
       margin-bottom: 30px;
-      
       animation: float 3.5s infinite;
       max-width: 90%;
     }
@@ -175,7 +173,6 @@
       border: 6px solid var(--black);
       border-radius: 15px;
       padding: 10px 20px;
-     
       transform: rotate(-3deg);
       transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
@@ -216,7 +213,6 @@
       padding: 15px;
       border: 5px solid var(--black);
       border-radius: 20px;
-      
       margin: 25px auto;
       width: fit-content;
     }
@@ -356,9 +352,9 @@
 
     .confetti {
       position: absolute;
-      width: 10px;
-      height: 10px;
-      border: 1px solid var(--black);
+      width: 15px;
+      height: 15px;
+      border: 2px solid var(--black);
       z-index: 100;
       pointer-events: none;
     }
@@ -410,8 +406,8 @@
     </div>
 
     <div class="controls">
-      <button class="btn-info" onclick="toggleInfo(true)" style="background:var(--yellow)">RULES</button>
-      <button class="btn-reset" onclick="resetGame()" style="background:var(--blue)">RESET</button>
+      <button class="btn-info" onclick="SFX.click(); toggleInfo(true)" style="background:var(--yellow)">RULES</button>
+      <button class="btn-reset" onclick="SFX.click(); resetGame()" style="background:var(--blue)">RESET</button>
     </div>
   </div>
 
@@ -428,7 +424,11 @@
 
   <script>
     // --- BACKGROUND SCRIPT ---
-    const puns = ["void OptimizeSynergy() { // make it odder }", "if (bugs == 0) synergy = true;", "while(playerIsSmiling) { magic(); }", "Debug.Log('Synergy level: 9000');", "git commit -m 'Fixed bugs, added odder ones'", "Vector3 pos = new Vector3(Odd, Fun, Wow);", "if(!isGameOdd) Debug.Log('That\\'s odd !!')"];
+    const puns = ["void OptimizeSynergy() { // make it odder }", "if (bugs == 0) synergy = true;", "while(playerIsSmiling) { magic(); }", "Debug.Log('Synergy level: 9000');", "git commit -m 'Fixed bugs, added odder ones'", "Vector3 pos = new Vector3(Odd, Fun, Wow);", "if(!isGameOdd) Debug.Log('That's odd !!')",
+      "// Overly Developed Direct Synergy", "// Organized Digital Disorder Synergy",
+      "// Obviously Doing Dumb Synergy", "// Overthinking Dumb Decisions Synergy",
+      "// Outcome Driven Design Synergy"
+    ];
     const bg = document.getElementById('code-bg');
     const rows = 10,
       cols = 4;
@@ -505,6 +505,7 @@
     }));
 
     function makeMove(idx) {
+      SFX.pop();
       idx = parseInt(idx);
       board[idx] = currentPlayer;
       playerQueues[currentPlayer].push(idx);
@@ -542,6 +543,11 @@
     }
 
     function triggerVictory(winIndices) {
+      if (currentPlayer === 'X') {
+        SFX.win();
+      } else {
+        SFX.lose();
+      }
       statusEl.innerText = currentPlayer == 'X' ? 'YOU WIN!' : 'I WIN!';
       statusBox.className = 'status-container victory';
       matchCount++;
@@ -557,6 +563,20 @@
         }, i * 150);
       });
       spawnConfetti();
+    }
+
+    function spawnConfetti() {
+      const colors = ['#ffde59', '#ff91da', '#5ce1e6', '#ffffff'];
+      for (let i = 0; i < 70; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.top = '-20px';
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.animation = `fall ${1 + Math.random() * 2}s linear forwards`;
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 3000);
+      }
     }
 
     function resetGame() {
@@ -635,7 +655,37 @@
       }
       return best;
     }
+    const SFX = {
+      ctx: new(window.AudioContext || window.webkitAudioContext)(),
+      play(freq, type, duration, slide = 0) {
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = type; // 'sine', 'square', 'sawtooth', 'triangle'
+        osc.frequency.setValueAtTime(freq, this.ctx.currentTime);
+        if (slide !== 0) {
+          osc.frequency.exponentialRampToValueAtTime(freq + slide, this.ctx.currentTime + duration);
+        }
+        gain.gain.setValueAtTime(0.1, this.ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(this.ctx.destination);
+        osc.start();
+        osc.stop(this.ctx.currentTime + duration);
+      },
+      // Specific Game Sounds
+      click: () => SFX.play(600, 'sine', 0.1),
+      pop: () => SFX.play(400, 'triangle', 0.1, 200),
+      win: () => {
+        SFX.play(523.25, 'square', 0.1); // C5
+        setTimeout(() => SFX.play(659.25, 'square', 0.1), 100); // E5
+        setTimeout(() => SFX.play(783.99, 'square', 0.3), 200); // G5
+      },
+      lose: () => {
+        SFX.play(300, 'sawtooth', 0.4, -150);
+      }
+    };
   </script>
+
 </body>
 
 </html>
