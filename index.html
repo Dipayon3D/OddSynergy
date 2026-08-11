@@ -31,7 +31,7 @@
       align-items: center;
       overflow-x: hidden;
       overflow-y: auto;
-      padding: 100px 15px;
+      padding: 60px 15px 100px;
       position: relative;
     }
 
@@ -83,6 +83,11 @@
 
     .game-section {
       margin-top: 40px;
+      z-index: 10;
+    }
+
+    .branding-container {
+      z-index: 10;
     }
 
     .logo-circle {
@@ -333,6 +338,118 @@
     .site-info-button.privacy {
       background: var(--pink);
     }
+    .top-nav-wrap {
+      position: relative;
+      z-index: 200;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin: 28px auto 48px;
+    }
+
+.top-nav {
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 3px;
+      padding: 0;
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+      position: relative;
+    }
+
+    .top-nav-link {
+      appearance: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      min-height: 42px;
+      padding: 10px 16px;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--black);
+      box-shadow: none;
+      font-family: 'Fredoka One', cursive;
+      font-size: 0.74rem;
+      line-height: 1;
+      text-decoration: none;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: background 0.18s ease, transform 0.18s ease;
+    }
+
+    .top-nav-link:hover {
+      background: var(--yellow);
+    }
+
+    .top-nav-link:active {
+      transform: scale(0.96);
+      box-shadow: none;
+    }
+
+    .linkedin-nav:hover {
+      background: var(--blue);
+    }
+
+    .top-nav-legal {
+      position: relative;
+    }
+
+    .legal-arrow {
+      font-size: 0.72rem;
+      transform: translateY(-1px);
+    }
+
+    .legal-menu {
+      position: absolute;
+      z-index: 1000;
+      top: calc(100% + 12px);
+      left: 50%;
+      transform: translateX(-50%) translateY(-4px);
+      min-width: 190px;
+      padding: 7px;
+      background: var(--white);
+      border: 4px solid var(--black);
+      border-radius: 16px;
+      box-shadow: 0 5px 0 var(--black);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+    }
+
+    .legal-menu.open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .legal-menu button {
+      width: 100%;
+      display: block;
+      padding: 10px 12px;
+      border: 0;
+      border-radius: 10px;
+      background: transparent;
+      box-shadow: none;
+      text-align: left;
+      font-size: 0.78rem;
+      white-space: nowrap;
+    }
+
+    .legal-menu button:hover {
+      background: var(--pink);
+    }
+
+    .legal-menu button:active {
+      transform: none;
+      box-shadow: none;
+    }
 
     #site-modal-overlay {
       position: fixed;
@@ -494,25 +611,134 @@
       opacity: 0.72;
     }
 
+    .compliance-note {
+      margin-top: 18px;
+      padding: 14px;
+      border: 3px solid var(--black);
+      border-radius: 14px;
+      background: #fff8cf;
+      font-size: 0.82rem;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .service-card {
+      border: 3px solid var(--black);
+      border-radius: 14px;
+      padding: 14px;
+      background: #fff;
+    }
+
+    .service-card h4 {
+      font-family: 'Fredoka One', cursive;
+      margin-bottom: 6px;
+      font-size: 1rem;
+    }
+
+    .pricing-box,
+    .legal-box {
+      margin-top: 20px;
+      border: 3px solid var(--black);
+      border-radius: 14px;
+      padding: 14px;
+      background: #fff8cf;
+    }
+
+    .site-footer {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 760px;
+      margin: 42px auto 0;
+      padding: 18px 16px;
+      text-align: center;
+      background: rgba(255,255,255,0.92);
+      border: 4px solid var(--black);
+      border-radius: 18px;
+      box-shadow: 0 6px 0 var(--black);
+    }
+
+    .site-footer-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px 14px;
+      margin-bottom: 12px;
+    }
+
+    .site-footer-link {
+      appearance: none;
+      border: 0;
+      box-shadow: none;
+      background: none;
+      padding: 0;
+      border-radius: 0;
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 800;
+      font-size: 0.8rem;
+      text-decoration: underline;
+      cursor: pointer;
+      color: var(--black);
+    }
+
+    .site-footer-link:active {
+      transform: none;
+      box-shadow: none;
+    }
+
+    .site-footer p {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.76rem;
+      line-height: 1.5;
+      color: var(--black);
+    }
+
+    .site-footer p + p {
+      margin-top: 5px;
+    }
+
     @media (max-width: 600px) {
-      .site-info-buttons {
-        gap: 7px;
-        width: 100%;
+      .service-grid {
+        grid-template-columns: 1fr;
       }
-
-      .site-info-button,
-      .btn-linkedin {
-        flex: 1 1 0;
+.top-nav {
+        flex: 1 1 auto;
         min-width: 0;
-        padding: 9px 8px !important;
-        font-size: clamp(0.62rem, 3vw, 0.8rem) !important;
-        gap: 5px !important;
+        gap: 0;
+        justify-content: flex-end;
       }
 
-      .btn-linkedin svg {
-        width: 15px;
-        height: 15px;
-        flex: 0 0 auto;
+      .top-nav-link {
+        flex: 0 1 auto;
+        min-width: 0;
+        min-height: 34px;
+        padding: 7px 6px;
+        font-size: clamp(0.54rem, 2.45vw, 0.69rem);
+      }
+
+      .linkedin-nav span {
+        display: none;
+      }
+
+      .linkedin-nav {
+        flex: 0 0 34px;
+        padding-left: 6px;
+        padding-right: 6px;
+      }
+
+      .legal-menu {
+        left: auto;
+        right: 0;
+        transform: translateY(-4px);
+      }
+
+      .legal-menu.open {
+        transform: translateY(0);
       }
 
       #site-modal-overlay {
@@ -542,7 +768,7 @@
       }
     }
 
-    @media (max-width: 365px) {
+@media (max-width: 365px) {
       .site-info-button,
       .btn-linkedin {
         font-size: 0.58rem !important;
@@ -610,12 +836,118 @@
       z-index: 100;
       pointer-events: none;
     }
+  
+    /* --- RESTORE WHITE PILL AROUND NAV BUTTONS --- */
+    .top-nav-wrap {
+      position: relative;
+      z-index: 200;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin: 28px auto 48px;
+      padding: 0 8px;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+    }
+
+    .top-nav {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 18px;
+      background: var(--white);
+      border: 4px solid var(--black);
+      border-radius: 999px;
+      box-shadow: 0 8px 0 var(--black);
+      position: relative;
+      width: min(100%, 900px);
+    }
+
+    @media (max-width: 600px) {
+      .top-nav-wrap {
+        margin: 18px auto 34px;
+        padding: 0 2px;
+        background: transparent;
+      }
+
+      .top-nav {
+        width: 100%;
+        max-width: 470px;
+        padding: 10px 8px;
+        gap: 3px;
+        justify-content: space-between;
+        background: var(--white);
+      }
+    }
+
+  
+    /* --- TRANSPARENT FOOTER WITH OUTLINED WHITE TEXT --- */
+    .site-footer {
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+
+    .site-footer,
+    .site-footer p,
+    .site-footer-link {
+      color: var(--white);
+      text-shadow:
+        -1px -1px 0 var(--black),
+         1px -1px 0 var(--black),
+        -1px  1px 0 var(--black),
+         1px  1px 0 var(--black),
+         0px  2px 0 var(--black);
+    }
+
+    .site-footer-link {
+      text-decoration-color: var(--white);
+    }
+
+    .site-footer-link:hover {
+      color: var(--yellow);
+      text-decoration-color: var(--yellow);
+    }
+
   </style>
 </head>
 
 <body>
 
+  
+
+
   <div id="code-bg"></div>
+
+
+  <div class="top-nav-wrap">
+    <nav class="top-nav" aria-label="Site navigation">
+        <button type="button" class="top-nav-link" onclick="SFX.click(); openSiteModal('about')">ABOUT</button>
+        <button type="button" class="top-nav-link" onclick="SFX.click(); openSiteModal('services')">SERVICES</button>
+        <button type="button" class="top-nav-link" onclick="SFX.click(); openSiteModal('contact')">CONTACT</button>
+
+        <div class="top-nav-legal">
+          <button type="button" class="top-nav-link legal-toggle" onclick="SFX.click(); toggleLegalMenu(event)" aria-expanded="false">
+            LEGAL <span class="legal-arrow">▾</span>
+          </button>
+          <div class="legal-menu" id="legal-menu">
+            <button type="button" onclick="SFX.click(); closeLegalMenu(); openSiteModal('privacy')">Privacy Policy</button>
+            <button type="button" onclick="SFX.click(); closeLegalMenu(); openSiteModal('terms')">Terms &amp; Conditions</button>
+          </div>
+        </div>
+
+        <a href="https://www.linkedin.com/company/odd-synergy/" class="top-nav-link linkedin-nav" target="_blank" rel="noopener" aria-label="Odd Synergy on LinkedIn">
+          <svg width="17" height="17" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+          </svg>
+          <span>LINKEDIN</span>
+        </a>
+      </nav>
+  </div>
 
   <div class="branding-container">
     <div class="logo-circle">
@@ -629,16 +961,7 @@
       <p>making oddly fun games</p>
       <p>... well, trying :D</p>
     </div>
-    <div class="site-info-buttons">
-      <button type="button" class="site-info-button" onclick="SFX.click(); openSiteModal('about')">ABOUT</button>
-      <button type="button" class="site-info-button privacy" onclick="SFX.click(); openSiteModal('privacy')">PRIVACY</button>
-      <a href="https://www.linkedin.com/company/odd-synergy/" class="btn-linkedin" target="_blank" style="text-decoration:none; display:inline-flex; align-items:center; justify-content:center; gap:8px; background:var(--blue); color:var(--black); padding:10px 25px; border:4px solid var(--black); border-radius:50px; font-size:0.9rem; box-shadow:0 4px 0 var(--black);">
-        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-        </svg>
-        LINKEDIN
-      </a>
-    </div>
+
   </div>
 
   <div class="game-section">
@@ -687,7 +1010,63 @@
     </div>
   </div>
 
+
+  <footer class="site-footer">
+    <div class="site-footer-links">
+      <button class="site-footer-link" onclick="openSiteModal('about')">About</button>
+      <button class="site-footer-link" onclick="openSiteModal('services')">Services</button>
+      <button class="site-footer-link" onclick="openSiteModal('contact')">Contact</button>
+      <button class="site-footer-link" onclick="openSiteModal('privacy')">Privacy Policy</button>
+      <button class="site-footer-link" onclick="openSiteModal('terms')">Terms &amp; Conditions</button>
+    </div>
+    <p><strong>Odd Synergy LLC</strong> · dip.oddsynergy@gmail.com · +1 307-396-4705</p>
+    <p>75 E 3RD ST STE 7, SHERIDAN, WY 82801 · Wyoming Filing ID: 2025-001847592</p>
+    <p>© 2026 Odd Synergy LLC. All rights reserved.</p>
+  </footer>
+
   <script>
+const contactFormHtml = `
+      <div class="contact-section" style="margin-top:0; padding-top:0; border-top:0;">
+        <h3>Contact Us</h3>
+        <p>For publishing opportunities, development partnerships, project inquiries, or other business matters, send us a message.</p>
+
+        <form class="contact-form" onsubmit="sendContactEmail(event)">
+          <div class="contact-field">
+            <label for="contact-name">Name</label>
+            <input id="contact-name" name="name" type="text" autocomplete="name" required>
+          </div>
+
+          <div class="contact-field">
+            <label for="contact-email">Email</label>
+            <input id="contact-email" name="email" type="email" autocomplete="email" required>
+          </div>
+
+          <div class="contact-field">
+            <label for="contact-subject">Subject</label>
+            <input id="contact-subject" name="subject" type="text" required>
+          </div>
+
+          <div class="contact-field">
+            <label for="contact-message">Message</label>
+            <textarea id="contact-message" name="message" required></textarea>
+          </div>
+
+          <button type="submit" class="contact-send-button">SEND EMAIL</button>
+        </form>
+
+        <p class="contact-note">This opens your default email app with the message pre-filled.</p>
+
+        <div class="legal-box">
+          <p><strong>Odd Synergy LLC</strong></p>
+          <p><strong>Email:</strong> <a href="mailto:dip.oddsynergy@gmail.com">dip.oddsynergy@gmail.com</a></p>
+          <p><strong>Phone:</strong> +1 307-396-4705</p>
+          <p><strong>Principal / Mailing Address:</strong> 75 E 3RD ST STE 7, SHERIDAN, WY 82801</p>
+          <p><strong>Wyoming Filing ID:</strong> 2025-001847592</p>
+          <p><strong>Formation Date:</strong> December 21, 2025</p>
+          <p><strong>Jurisdiction:</strong> Wyoming, United States</p>
+        </div>
+      </div>
+    `;
 
     const siteModalContent = {
       about: {
@@ -697,39 +1076,47 @@
           <p>Our primary focus is mobile game development for <strong>Android and iOS</strong>, with an emphasis on building commercially viable games and forming strong, long-term partnerships with established publishers. We approach development with a focus on compelling core gameplay, rapid iteration, market awareness, and high-quality execution.</p>
           <p>As we continue to strengthen our presence and expertise in the mobile market, our long-term vision is to expand into <strong>PC development through Steam</strong>, applying the experience, processes, and creative foundation we build along the way.</p>
           <p>Our goal is to grow Odd Synergy into a versatile game studio capable of creating distinctive, polished games across multiple platforms.</p>
+        `
+      },
 
-          <div class="contact-section">
-            <h3>Contact Us</h3>
-            <p>Have a project, publishing opportunity, or business inquiry? Send us a message.</p>
+      services: {
+        title: 'Services',
+        html: `
+          <p>Odd Synergy LLC develops games and prototypes for mobile platforms, with PC development planned as a future expansion area.</p>
 
-            <form class="contact-form" onsubmit="sendContactEmail(event)">
-              <div class="contact-field">
-                <label for="contact-name">Name</label>
-                <input id="contact-name" name="name" type="text" autocomplete="name" required>
-              </div>
+          <div class="service-grid">
+            <div class="service-card">
+              <h4>Mobile Game Development</h4>
+              <p>Game development for Android and iOS, with a focus on polished, commercially viable mobile experiences.</p>
+            </div>
+            <div class="service-card">
+              <h4>Game Prototyping</h4>
+              <p>Rapid development and iteration of gameplay concepts to evaluate core mechanics, usability, and market potential.</p>
+            </div>
+            <div class="service-card">
+              <h4>Publisher Collaboration</h4>
+              <p>Development collaboration with established mobile game publishers, including prototyping, iteration, testing, and production.</p>
+            </div>
+            <div class="service-card">
+              <h4>PC / Steam Development</h4>
+              <p>PC game development is part of Odd Synergy's long-term roadmap as the studio expands beyond its primary mobile focus.</p>
+            </div>
+          </div>
 
-              <div class="contact-field">
-                <label for="contact-email">Email</label>
-                <input id="contact-email" name="email" type="email" autocomplete="email" required>
-              </div>
-
-              <div class="contact-field">
-                <label for="contact-subject">Subject</label>
-                <input id="contact-subject" name="subject" type="text" required>
-              </div>
-
-              <div class="contact-field">
-                <label for="contact-message">Message</label>
-                <textarea id="contact-message" name="message" required></textarea>
-              </div>
-
-              <button type="submit" class="contact-send-button">SEND EMAIL</button>
-            </form>
-
-            <p class="contact-note">This opens your default email app with the message pre-filled.</p>
+          <div class="pricing-box">
+            <h3>Pricing & Quotations</h3>
+            <p>Odd Synergy LLC does not publish fixed prices on this website because project pricing depends on scope, development requirements, timeline, deliverables, and collaboration model.</p>
+            <p>For a custom quotation, please contact us with your project requirements. Any applicable pricing, currency, fees, deliverables, and payment terms will be provided clearly before an agreement is entered into.</p>
+            <p><strong>No direct payments are processed or collected through this website.</strong></p>
           </div>
         `
       },
+
+      contact: {
+        title: 'Contact',
+        html: contactFormHtml
+      },
+
       privacy: {
         title: 'Privacy Policy',
         html: `
@@ -770,52 +1157,93 @@
           <h3>3. Website Payments</h3>
           <p>Odd Synergy LLC does <strong>not process or collect direct payments through this website</strong>.</p>
           <p>The website does not currently include an online store, checkout system, subscription payment system, or other functionality that requires visitors to provide credit card, debit card, banking, or other payment information directly to Odd Synergy LLC.</p>
-          <p>If payment-related functionality is introduced in the future, it may be provided through an authorized third-party payment processor. This Privacy Policy will be updated accordingly.</p>
 
           <h3>4. Games Published Through Third Parties</h3>
-          <p>Odd Synergy may work with third-party publishers, platform providers, distribution partners, or service providers.</p>
-          <p>When one of our games is distributed or published through a third party, such as a mobile game publisher, the Apple App Store, Google Play, Steam, or another platform, that third party may independently collect and process information according to its own privacy policy and terms.</p>
-          <p>We recommend reviewing the privacy policy applicable to the specific platform, publisher, or service through which you access a game.</p>
+          <p>Odd Synergy may work with third-party publishers, platform providers, distribution partners, or service providers. When one of our games is distributed or published through a third party, that third party may independently collect and process information according to its own privacy policy and terms.</p>
 
           <h3>5. Advertising and Analytics</h3>
-          <p>Some of our games may use third-party advertising, analytics, attribution, or performance-monitoring services.</p>
-          <p>Depending on the game, these services may process information such as device identifiers, advertising identifiers, IP addresses, gameplay and usage data, advertising interactions, and crash or performance information.</p>
-          <p>These third-party providers process information according to their respective privacy policies. Our website may also use basic analytics or similar technologies to understand traffic and improve website performance.</p>
+          <p>Some of our games may use third-party advertising, analytics, attribution, or performance-monitoring services. These providers process information according to their respective privacy policies.</p>
 
           <h3>6. Cookies and Similar Technologies</h3>
           <p>Our website may use cookies or similar technologies for essential website functionality, analytics, security, or performance measurement.</p>
-          <p>You may be able to control or disable cookies through your browser settings. Disabling certain cookies may affect some website functionality.</p>
 
           <h3>7. Data Sharing</h3>
-          <p>Odd Synergy LLC does not sell your personal information.</p>
-          <p>We may share limited information with third parties when reasonably necessary to operate our Services, including hosting and infrastructure providers, analytics providers, advertising and attribution providers used within our games, game publishing and distribution partners, technical service providers, professional advisers where necessary, and government authorities or law-enforcement agencies when required by applicable law.</p>
+          <p>Odd Synergy LLC does not sell your personal information. We may share limited information with service providers, publishing partners, professional advisers, or authorities when reasonably necessary or legally required.</p>
 
           <h3>8. Data Security</h3>
-          <p>We use reasonable technical and organizational measures designed to protect information against unauthorized access, loss, misuse, alteration, or disclosure. However, no internet transmission, storage system, website, or digital service can be guaranteed to be completely secure.</p>
+          <p>We use reasonable technical and organizational measures designed to protect information against unauthorized access, loss, misuse, alteration, or disclosure.</p>
 
           <h3>9. Data Retention</h3>
-          <p>We retain personal information only for as long as reasonably necessary for the purposes described in this Privacy Policy, including providing our Services, responding to inquiries, maintaining business records, resolving disputes, and complying with legal obligations.</p>
+          <p>We retain personal information only for as long as reasonably necessary for the purposes described in this Privacy Policy.</p>
 
           <h3>10. Children’s Privacy</h3>
           <p>Our website is primarily intended to provide information about Odd Synergy LLC and its games. We do not knowingly collect personal information through our website from children under the age of 13, or a higher minimum age where required by applicable law.</p>
-          <p>Individual games may have different intended audiences. Where necessary, appropriate privacy practices, platform requirements, and age-related protections may apply to those games.</p>
 
           <h3>11. Your Privacy Rights</h3>
-          <p>Depending on where you live, you may have certain rights regarding your personal information, including rights to request access, correction, deletion, restriction of certain processing, withdrawal of consent where applicable, or information about how your personal data is used.</p>
+          <p>Depending on where you live, you may have rights to request access, correction, deletion, restriction of certain processing, withdrawal of consent where applicable, or information about how your personal data is used.</p>
 
           <h3>12. Third-Party Links</h3>
-          <p>Our website may contain links to third-party websites, stores, publishers, social media services, or platforms. Odd Synergy LLC is not responsible for the privacy practices, security, or content of those third-party services.</p>
+          <p>Our website may contain links to third-party websites, stores, publishers, social media services, or platforms. Odd Synergy LLC is not responsible for their privacy practices, security, or content.</p>
 
           <h3>13. International Data Processing</h3>
-          <p>Because our games and website may be accessible internationally, information may be processed or stored in countries other than the country in which you live. Where required, we take reasonable measures to ensure that personal information is handled in accordance with applicable data-protection requirements.</p>
+          <p>Because our games and website may be accessible internationally, information may be processed or stored in countries other than the country in which you live.</p>
 
           <h3>14. Changes to This Privacy Policy</h3>
-          <p>We may update this Privacy Policy periodically to reflect changes to our Services, business practices, technologies, or legal requirements. When changes are made, we will update the “Last Updated” date at the top of this policy.</p>
+          <p>We may update this Privacy Policy periodically. When changes are made, we will update the “Last Updated” date at the top of this policy.</p>
 
           <h3>15. Contact Us</h3>
-          <p>If you have questions about this Privacy Policy, our privacy practices, or your personal information, you may contact us at:</p>
           <p><strong>Odd Synergy LLC</strong><br>
-          <strong>Email:</strong> <a href="mailto:dip.oddsynergy@gmail.com">dip.oddsynergy@gmail.com</a></p>
+          <strong>Email:</strong> <a href="mailto:dip.oddsynergy@gmail.com">dip.oddsynergy@gmail.com</a><br>
+          <strong>Principal / Mailing Address:</strong> 75 E 3RD ST STE 7, SHERIDAN, WY 82801<br>
+          <strong>Wyoming Filing ID:</strong> 2025-001847592</p>
+        `
+      },
+
+      terms: {
+        title: 'Terms & Conditions',
+        html: `
+          <p><strong>Last Updated: August 11, 2026</strong></p>
+          <p>These Terms & Conditions govern your use of the Odd Synergy LLC website. By accessing or using this website, you agree to these terms.</p>
+
+          <h3>1. Business Information</h3>
+          <p>This website is operated by <strong>Odd Synergy LLC</strong>.</p>
+          <p><strong>Principal / Mailing Address:</strong> 75 E 3RD ST STE 7, SHERIDAN, WY 82801<br>
+          <strong>Wyoming Filing ID:</strong> 2025-001847592<br>
+          <strong>Formation Date:</strong> December 21, 2025<br>
+          <strong>Governing Jurisdiction:</strong> Wyoming, United States</p>
+
+          <h3>2. Website Purpose</h3>
+          <p>This website provides information about Odd Synergy LLC, its game development activities, services, projects, and business contact information.</p>
+
+          <h3>3. Services & Quotations</h3>
+          <p>Services may include mobile game development, game prototyping, publisher collaboration, and related game development work. Pricing is provided on a custom quotation basis depending on project scope, requirements, timeline, deliverables, and collaboration model.</p>
+          <p>Any applicable price, currency, fees, deliverables, payment schedule, and commercial terms will be disclosed before a service agreement is entered into.</p>
+
+          <h3>4. No Website Checkout or Direct Payments</h3>
+          <p><strong>Odd Synergy LLC does not process or collect direct payments through this website.</strong> There is no website checkout, subscription billing, recurring billing, paid trial, or online purchase flow currently offered on this site.</p>
+
+          <h3>5. Refunds, Cancellations & Fulfillment</h3>
+          <p>Because this website does not sell products or services through an online checkout, website-level refund, cancellation, shipping, and delivery policies do not apply.</p>
+          <p>If Odd Synergy LLC enters into a paid development or business agreement with a client or partner, refund, cancellation, payment, delivery, milestone, and fulfillment terms will be defined in the applicable written agreement or quotation.</p>
+
+          <h3>6. Intellectual Property</h3>
+          <p>Unless otherwise stated, the content, branding, graphics, text, code, and other materials presented on this website are owned by or licensed to Odd Synergy LLC and may not be copied, distributed, or used without permission except as allowed by applicable law.</p>
+
+          <h3>7. Third-Party Platforms & Links</h3>
+          <p>Our website may link to third-party platforms such as LinkedIn, mobile app stores, Steam, publishers, or other services. Those third parties operate under their own terms and policies.</p>
+
+          <h3>8. Accuracy of Information</h3>
+          <p>We aim to keep information on this website accurate and current. However, services, projects, partnerships, availability, and business information may change over time.</p>
+
+          <h3>9. Limitation of Liability</h3>
+          <p>To the extent permitted by applicable law, Odd Synergy LLC is not liable for indirect, incidental, or consequential losses arising solely from use of this informational website.</p>
+
+          <h3>10. Changes to These Terms</h3>
+          <p>We may update these Terms & Conditions periodically. The latest version will be published on this website with an updated effective date.</p>
+
+          <h3>11. Contact</h3>
+          <p>Questions regarding these terms may be sent to <a href="mailto:dip.oddsynergy@gmail.com">dip.oddsynergy@gmail.com</a>.</p>
+
         `
       }
     };
@@ -839,7 +1267,30 @@
       window.location.href = mailto;
     }
 
+    function toggleLegalMenu(event) {
+      event.stopPropagation();
+      const menu = document.getElementById('legal-menu');
+      const toggle = document.querySelector('.legal-toggle');
+      const isOpen = menu.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    }
+
+    function closeLegalMenu() {
+      const menu = document.getElementById('legal-menu');
+      const toggle = document.querySelector('.legal-toggle');
+      if (menu) menu.classList.remove('open');
+      if (toggle) toggle.setAttribute('aria-expanded', 'false');
+    }
+
+    document.addEventListener('click', event => {
+      const legal = document.querySelector('.top-nav-legal');
+      if (legal && !legal.contains(event.target)) {
+        closeLegalMenu();
+      }
+    });
+
     function openSiteModal(section) {
+      closeLegalMenu();
       const modal = document.getElementById('site-modal-overlay');
       const title = document.getElementById('site-modal-title');
       const content = document.getElementById('site-modal-content');
