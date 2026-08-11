@@ -430,6 +430,70 @@
       overflow-wrap: anywhere;
     }
 
+    .contact-section {
+      margin-top: 28px;
+      padding-top: 24px;
+      border-top: 3px solid var(--black);
+    }
+
+    .contact-section h3 {
+      margin-top: 0;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .contact-field {
+      display: grid;
+      gap: 6px;
+    }
+
+    .contact-field label {
+      font-family: 'Fredoka One', cursive;
+      font-size: 0.9rem;
+    }
+
+    .contact-field input,
+    .contact-field textarea {
+      width: 100%;
+      border: 3px solid var(--black);
+      border-radius: 12px;
+      padding: 11px 12px;
+      background: var(--white);
+      color: var(--black);
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+    }
+
+    .contact-field textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .contact-field input:focus,
+    .contact-field textarea:focus {
+      box-shadow: 0 0 0 3px var(--yellow);
+    }
+
+    .contact-send-button {
+      justify-self: start;
+      margin-top: 4px;
+      background: var(--blue);
+      padding: 10px 22px;
+    }
+
+    .contact-note {
+      margin-top: 10px !important;
+      font-size: 0.78rem;
+      opacity: 0.72;
+    }
+
     @media (max-width: 600px) {
       .site-info-buttons {
         gap: 7px;
@@ -633,6 +697,37 @@
           <p>Our primary focus is mobile game development for <strong>Android and iOS</strong>, with an emphasis on building commercially viable games and forming strong, long-term partnerships with established publishers. We approach development with a focus on compelling core gameplay, rapid iteration, market awareness, and high-quality execution.</p>
           <p>As we continue to strengthen our presence and expertise in the mobile market, our long-term vision is to expand into <strong>PC development through Steam</strong>, applying the experience, processes, and creative foundation we build along the way.</p>
           <p>Our goal is to grow Odd Synergy into a versatile game studio capable of creating distinctive, polished games across multiple platforms.</p>
+
+          <div class="contact-section">
+            <h3>Contact Us</h3>
+            <p>Have a project, publishing opportunity, or business inquiry? Send us a message.</p>
+
+            <form class="contact-form" onsubmit="sendContactEmail(event)">
+              <div class="contact-field">
+                <label for="contact-name">Name</label>
+                <input id="contact-name" name="name" type="text" autocomplete="name" required>
+              </div>
+
+              <div class="contact-field">
+                <label for="contact-email">Email</label>
+                <input id="contact-email" name="email" type="email" autocomplete="email" required>
+              </div>
+
+              <div class="contact-field">
+                <label for="contact-subject">Subject</label>
+                <input id="contact-subject" name="subject" type="text" required>
+              </div>
+
+              <div class="contact-field">
+                <label for="contact-message">Message</label>
+                <textarea id="contact-message" name="message" required></textarea>
+              </div>
+
+              <button type="submit" class="contact-send-button">SEND EMAIL</button>
+            </form>
+
+            <p class="contact-note">This opens your default email app with the message pre-filled.</p>
+          </div>
         `
       },
       privacy: {
@@ -724,6 +819,25 @@
         `
       }
     };
+
+    function sendContactEmail(event) {
+      event.preventDefault();
+
+      const name = document.getElementById('contact-name').value.trim();
+      const email = document.getElementById('contact-email').value.trim();
+      const subject = document.getElementById('contact-subject').value.trim();
+      const message = document.getElementById('contact-message').value.trim();
+
+      const body = [
+        `Name: ${name}`,
+        `Email: ${email}`,
+        '',
+        message
+      ].join('\n');
+
+      const mailto = `mailto:dip.oddsynergy@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = mailto;
+    }
 
     function openSiteModal(section) {
       const modal = document.getElementById('site-modal-overlay');
